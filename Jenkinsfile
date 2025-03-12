@@ -1,29 +1,27 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o output hello.cpp'  // Compile C++ file
+                sh 'g++ -o output main/hello.cpp'
             }
         }
-        
         stage('Test') {
             steps {
-                sh './output'  // Execute compiled file
+                sh './output'
             }
         }
-        
         stage('Deploy') {
             steps {
-                echo 'Deploying Application...'
+                echo 'Deployment successful!'
             }
         }
     }
-    
+
     post {
         failure {
-            echo 'Pipeline Failed!'  // Post action for failures
+            echo 'Pipeline Failed!'
         }
     }
 }
